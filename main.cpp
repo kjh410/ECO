@@ -1,0 +1,130 @@
+#include "include_list.h"
+//#include"netlist_parser.h"
+//#include"tree.h"
+#include "cudd.h"
+#include "util.h"
+#include "BddBuilder.h"
+#include "VerilogMaker.h"
+#include <time.h>
+//git test!!!!!!
+//this is remote repository
+//pulling test333
+void fun(char*& ch);
+
+int main(void)
+{
+	int gate_type;
+	char input_dir_name0[128];
+	char input_dir_name1[128];
+	char* num0=new char[3];
+	char* num1=new char[3];
+	int number_of_diff_output=0;
+	char** diff_outputName=NULL;
+	char** input_sequence=NULL;
+	int total_input_band=0;
+	int total_output_band=0;
+	char output_file[128];
+	clock_t start_time,end_time;
+	cout<<"select change type(1.not inc 2.gate inc 3.gate type change 4.CAD): ";
+	cin>>gate_type;
+	cout<<"select number(circuit A): ";
+	cin>>num0;
+	cout<<"select number(circuit B): ";
+	cin>>num1;
+	//sprintf(input_dir_name0,"./test file/cadContest2012_ECO_test%s/g1.v",num0);
+	//sprintf(input_dir_name0, "./testfile/ex%s.v", num0);
+	start_time=clock();
+	switch(gate_type){
+		case 1:
+			sprintf(input_dir_name0,"./test_by_mok/not/test_%s.v", num0);
+			sprintf(input_dir_name1,"./test_by_mok/not/new_test_%s.v", num1);
+			break;
+		case 2:
+			sprintf(input_dir_name0,"./test_by_mok/gate_inc/test_%s.v", num0);
+			sprintf(input_dir_name1,"./test_by_mok/gate_inc/new_test_%s.v", num1);
+			break;
+		case 3:
+			sprintf(input_dir_name0,"./test_by_mok/gate_change/test_%s.v", num0);
+			sprintf(input_dir_name1,"./test_by_mok/gate_change/new_test_%s.v", num1);
+			break;
+		case 4:
+			sprintf(input_dir_name0,"./test_by_mok/cadContest2012_ECO_test%s/g1.v",num0);
+			sprintf(input_dir_name1,"./test_by_mok/cadContest2012_ECO_test%s/g2.v",num0);
+		default:
+			break;
+	}
+	netlist_parser parser1(input_dir_name0);
+	Node node1(parser1);
+	Wire wire1(parser1);
+	for(int i=0;i<node1.list()->get_parser()->input_port_name.size();i++)
+		total_input_band+=node1.list()->get_parser()->input_port_bandwidth[i];	
+	input_sequence = new char*[total_input_band];
+	cout<<node1.list()->get_parser()->input_port_name.size()<<endl;
+	for(int i=0;i<total_input_band;i++)
+		input_sequence[i] = new char[32];
+	printf("Bdd Building...[0]\n");
+	BddBuilder * bddBuilder0 = new BddBuilder();
+	bddBuilder0->construct(wire1.list(), node1.list(),input_sequence,total_input_band);
+	//bddBuilder0->dotDump();
+	//sprintf(input_dir_name1, "./test_by_mok/new_test_%s.v", num1);
+	netlist_parser parser2(input_dir_name1);
+	Node node2(parser2);
+	Wire wire2(parser2);
+	printf("Bdd Building...[1]\n");
+	BddBuilder * bddBuilder1 = new BddBuilder(bddBuilder0);
+	bddBuilder1->constructB(bddBuilder0, wire2.list(), node2.list());
+	//bddBuilder1->dotDump();
+
+	DdNode ** xordlist = bddBuilder0->getXORdNodeList(bddBuilder1);	
+	for(int i=0;i<node1.list()->get_parser()->output_port_name.size();i++)
+		total_output_band+=node1.list()->get_parser()->output_port_bandwidth[i];	
+	diff_outputName = new char*[total_output_band];
+	for(int i=0;i<total_output_band;i++)
+		diff_outputName[i] = new char[32];
+	bddBuilder0->dotDumpC(xordlist,number_of_diff_output,diff_outputName);
+	//bddBuilder0->dotDumpCZdd(xordlist);
+
+	DdNode ** xordA = bddBuilder0->getXORdNodeList(xordlist);	
+	//bddBuilder0->dotDumpC(xordA);
+	
+	if(bddBuilder1->checkEquality(xordA) == 0)
+		printf("Equality check succeed.\n");
+	
+	cout<<"BDD input sequence: ";
+	for(int i=0;i<total_input_band;i++)
+		cout<<input_sequence[i]<<" ";
+	cout<<endl;
+	cout<<"different output : "<<number_of_diff_output<<endl;
+	cout<<"input number : "<<total_input_band<<endl;
+	switch(gate_type){
+		case 1:
+			sprintf(output_file,"./test_by_mok/not/g3_%s", num0);
+			break;
+		case 2:
+			sprintf(output_file,"./test_by_mok/gate_inc/g3_%s", num0);
+			break;
+		case 3:
+			sprintf(output_file,"./test_by_mok/gate_change/g3_%s", num0);
+			break;
+		case 4:
+			sprintf(output_file,"./test_by_mok/CAD/g3_%s",num0);
+		default:
+			break;
+	}
+	VerilogMaker* Maker=new VerilogMaker(node1.list(),output_file);
+
+	Maker->Function(diff_outputName,number_of_diff_output,input_sequence,total_input_band);
+	end_time=clock();
+	double elapsed_sec=(double)(end_time-start_time)/CLOCKS_PER_SEC;
+	cout<<"elapsed ms : "<<elapsed_sec<<"ms"<<endl;
+	delete []input_sequence;
+	delete []diff_outputName;
+	delete Maker;
+	delete []xordA;
+	delete []xordlist;
+	delete bddBuilder0;
+	delete bddBuilder1;
+	delete []num0;
+	delete []num1;
+	return 0;
+}

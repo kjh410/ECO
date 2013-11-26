@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bddnetlist/!svn/ver/2/test%20file/cadContest2012_ECO_test06
+END
+verify
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bddnetlist/!svn/ver/2/test%20file/cadContest2012_ECO_test06/verify
+END
+g1.v
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bddnetlist/!svn/ver/2/test%20file/cadContest2012_ECO_test06/g1.v
+END
+g2.v
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bddnetlist/!svn/ver/2/test%20file/cadContest2012_ECO_test06/g2.v
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bddnetlist/!svn/ver/2/test%20file/cadContest2012_ECO_test06/README
+END

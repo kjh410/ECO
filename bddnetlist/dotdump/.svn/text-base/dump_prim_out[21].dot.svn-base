@@ -1,0 +1,137 @@
+digraph "DD" {
+size = "7.5,10"
+center = true;
+edge [dir = none];
+{ node [shape = plaintext];
+  edge [style = invis];
+  "CONST NODES" [style = invis];
+" sel_prim[0] " -> " sel_prim[1] " -> " sel_prim[2] " -> " sel_prim[15] " -> " sel_prim[11] " -> " sel_prim[12] " -> " sel_prim[13] " -> " sel_prim[14] " -> " sel_prim[7] " -> " sel_prim[8] " -> " sel_prim[9] " -> " sel_prim[10] " -> " sel_prim[3] " -> " sel_prim[4] " -> " sel_prim[5] " -> " sel_prim[6] " -> "CONST NODES"; 
+}
+{ rank = same; node [shape = box]; edge [style = invis];
+"  prim_out[21]  "; }
+{ rank = same; " sel_prim[0] ";
+"0x6a0";
+}
+{ rank = same; " sel_prim[1] ";
+"0x69f";
+}
+{ rank = same; " sel_prim[2] ";
+"0x69e";
+}
+{ rank = same; " sel_prim[15] ";
+"0x69b";
+"0x69d";
+}
+{ rank = same; " sel_prim[11] ";
+"0x69c";
+"0x498";
+"0x5d2";
+"0x697";
+}
+{ rank = same; " sel_prim[12] ";
+"0x696";
+"0x497";
+"0x5d1";
+}
+{ rank = same; " sel_prim[13] ";
+"0x496";
+}
+{ rank = same; " sel_prim[14] ";
+"0x495";
+}
+{ rank = same; " sel_prim[7] ";
+"0x451";
+"0x3ea";
+"0x695";
+"0x694";
+"0x442";
+}
+{ rank = same; " sel_prim[8] ";
+"0x450";
+"0x441";
+}
+{ rank = same; " sel_prim[9] ";
+"0x44f";
+"0x440";
+}
+{ rank = same; " sel_prim[10] ";
+"0x44e";
+"0x43f";
+}
+{ rank = same; " sel_prim[3] ";
+"0x3ff";
+}
+{ rank = same; " sel_prim[4] ";
+"0x3fe";
+}
+{ rank = same; " sel_prim[5] ";
+"0x3fd";
+}
+{ rank = same; " sel_prim[6] ";
+"0x3f1";
+}
+{ rank = same; "CONST NODES";
+{ node [shape = box]; "0x3db";
+}
+}
+"  prim_out[21]  " -> "0x6a0" [style = dotted];
+"0x6a0" -> "0x3ea";
+"0x6a0" -> "0x69f" [style = dotted];
+"0x69f" -> "0x69b";
+"0x69f" -> "0x69e" [style = dashed];
+"0x69e" -> "0x69d";
+"0x69e" -> "0x3ea" [style = dotted];
+"0x69b" -> "0x498";
+"0x69b" -> "0x5d2" [style = dotted];
+"0x69d" -> "0x69c";
+"0x69d" -> "0x697" [style = dotted];
+"0x69c" -> "0x442";
+"0x69c" -> "0x497" [style = dashed];
+"0x498" -> "0x3ff";
+"0x498" -> "0x497" [style = dashed];
+"0x5d2" -> "0x451";
+"0x5d2" -> "0x5d1" [style = dashed];
+"0x697" -> "0x694";
+"0x697" -> "0x696" [style = dashed];
+"0x696" -> "0x695";
+"0x696" -> "0x3db" [style = dashed];
+"0x497" -> "0x442";
+"0x497" -> "0x496" [style = dashed];
+"0x5d1" -> "0x451";
+"0x5d1" -> "0x3db" [style = dashed];
+"0x496" -> "0x3ff";
+"0x496" -> "0x495" [style = dashed];
+"0x495" -> "0x3ff";
+"0x495" -> "0x442" [style = dashed];
+"0x451" -> "0x3db";
+"0x451" -> "0x450" [style = dotted];
+"0x3ea" -> "0x3db";
+"0x3ea" -> "0x3db" [style = dotted];
+"0x695" -> "0x3db";
+"0x695" -> "0x3ff" [style = dotted];
+"0x694" -> "0x3db";
+"0x694" -> "0x441" [style = dotted];
+"0x442" -> "0x3ff";
+"0x442" -> "0x441" [style = dashed];
+"0x450" -> "0x3ff";
+"0x450" -> "0x44f" [style = dotted];
+"0x441" -> "0x3db";
+"0x441" -> "0x440" [style = dashed];
+"0x44f" -> "0x3db";
+"0x44f" -> "0x44e" [style = dotted];
+"0x440" -> "0x3ff";
+"0x440" -> "0x43f" [style = dashed];
+"0x44e" -> "0x3ff";
+"0x44e" -> "0x3db" [style = dotted];
+"0x43f" -> "0x3ff";
+"0x43f" -> "0x3db" [style = dashed];
+"0x3ff" -> "0x3db";
+"0x3ff" -> "0x3fe" [style = dotted];
+"0x3fe" -> "0x3db";
+"0x3fe" -> "0x3fd" [style = dotted];
+"0x3fd" -> "0x3db";
+"0x3fd" -> "0x3f1" [style = dashed];
+"0x3f1" -> "0x3db";
+"0x3f1" -> "0x3db" [style = dotted];
+"0x3db" [label = "1"];
+}

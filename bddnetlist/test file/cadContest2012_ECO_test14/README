@@ -1,0 +1,5 @@
+
+1. input: g1.v g2.v
+2. expected output: patch.v g3.v
+3. the LEC script, verify, is provided to the contester to use LEC to verify the fix
+    usage: lec -nogui -dofile verify

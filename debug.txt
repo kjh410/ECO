@@ -1,0 +1,5 @@
+: 1 nodes 1 leaves 256 minterms
+ID =  0x8fcad7	value = 1        
+
+--------  1
+

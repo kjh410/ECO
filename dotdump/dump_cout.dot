@@ -1,0 +1,88 @@
+digraph "DD" {
+size = "7.5,10"
+center = true;
+edge [dir = none];
+{ node [shape = plaintext];
+  edge [style = invis];
+  "CONST NODES" [style = invis];
+" a[4] " -> " b[4] " -> " cin " -> " a[3] " -> " b[3] " -> " a[2] " -> " b[2] " -> " a[1] " -> " b[1] " -> " a[0] " -> " b[0] " -> "CONST NODES"; 
+}
+{ rank = same; node [shape = box]; edge [style = invis];
+"  cout  "; }
+{ rank = same; " a[4] ";
+"0x8f";
+}
+{ rank = same; " b[4] ";
+"0x8e";
+"0x8d";
+}
+{ rank = same; " cin ";
+"0x8c";
+}
+{ rank = same; " a[3] ";
+"0x8a";
+"0x8b";
+}
+{ rank = same; " b[3] ";
+"0x89";
+}
+{ rank = same; " a[2] ";
+"0x87";
+"0x88";
+}
+{ rank = same; " b[2] ";
+"0x86";
+}
+{ rank = same; " a[1] ";
+"0x84";
+"0x85";
+}
+{ rank = same; " b[1] ";
+"0x83";
+}
+{ rank = same; " a[0] ";
+"0x82";
+"0x67";
+}
+{ rank = same; " b[0] ";
+"0x14";
+}
+{ rank = same; "CONST NODES";
+{ node [shape = box]; "0x6";
+}
+}
+"  cout  " -> "0x8f" [style = solid];
+"0x8f" -> "0x8d";
+"0x8f" -> "0x8e" [style = dashed];
+"0x8e" -> "0x8c";
+"0x8e" -> "0x8b" [style = dashed];
+"0x8d" -> "0x8a";
+"0x8d" -> "0x8c" [style = dashed];
+"0x8c" -> "0x8a";
+"0x8c" -> "0x8b" [style = dashed];
+"0x8a" -> "0x87";
+"0x8a" -> "0x89" [style = dashed];
+"0x8b" -> "0x89";
+"0x8b" -> "0x88" [style = dashed];
+"0x89" -> "0x87";
+"0x89" -> "0x88" [style = dashed];
+"0x87" -> "0x84";
+"0x87" -> "0x86" [style = dashed];
+"0x88" -> "0x86";
+"0x88" -> "0x85" [style = dashed];
+"0x86" -> "0x84";
+"0x86" -> "0x85" [style = dashed];
+"0x84" -> "0x82";
+"0x84" -> "0x83" [style = dashed];
+"0x85" -> "0x83";
+"0x85" -> "0x67" [style = dashed];
+"0x83" -> "0x82";
+"0x83" -> "0x67" [style = dashed];
+"0x82" -> "0x6";
+"0x82" -> "0x14" [style = dashed];
+"0x67" -> "0x14";
+"0x67" -> "0x6" [style = dotted];
+"0x14" -> "0x6";
+"0x14" -> "0x6" [style = dotted];
+"0x6" [label = "1"];
+}

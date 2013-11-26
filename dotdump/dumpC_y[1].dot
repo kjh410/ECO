@@ -1,0 +1,18 @@
+digraph "DD" {
+size = "7.5,10"
+center = true;
+edge [dir = none];
+{ node [shape = plaintext];
+  edge [style = invis];
+  "CONST NODES" [style = invis];
+"CONST NODES"; 
+}
+{ rank = same; node [shape = box]; edge [style = invis];
+"  y[1]  "; }
+{ rank = same; "CONST NODES";
+{ node [shape = box]; "(nil)";
+}
+}
+"  y[1]  " -> "(nil)" [style = solid];
+"(nil)" [label = "1"];
+}

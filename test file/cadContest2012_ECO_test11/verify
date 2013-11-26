@@ -1,0 +1,13 @@
+
+// This is the verification script using LEC.
+
+set log file v.log -repl
+
+// READ the G3 to verify the patch fix G1 to functionally equal to G2
+read design g3.v -gold
+
+// This is the G2 netlist, i.e., to patch G1 to be equivalent to G2 is the goal
+read design g2.v -rev
+
+go
+
